@@ -118,6 +118,7 @@ const CATS = [
 // Apps that also have a Google Play option, shown as a second button.
 const PLAY = {
   "com.sumusltd.woad": ["https://play.google.com/store/apps/details?id=com.sumusltd.woad", "Play (paid)"],
+  "com.liamcottle.meshcore.android": ["https://play.google.com/store/apps/details?id=com.liamcottle.meshcore.android", "Play"],
 };
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const host = u => { try { return new URL(u).hostname.replace(/^www\./,""); } catch { return u; } };
