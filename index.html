@@ -39,6 +39,15 @@ code,.path{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85
 .apps .name{font-weight:600}
 .apps .src{color:var(--muted);font-size:.85rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .apps a.add{flex:none;font-size:.85rem;padding:7px 12px;border-radius:8px;border:1px solid var(--line);color:var(--ink);text-decoration:none;white-space:nowrap}
+.atak{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.atak p{margin:8px 0}
+.atak h3{font-size:1rem;margin:18px 0 6px}
+.atak .needs{margin:0;padding-left:20px;color:var(--muted)}
+.atak .needs li{margin:4px 0}
+.video{position:relative;display:block;margin-top:12px;border-radius:10px;overflow:hidden;background:#000;aspect-ratio:16/9}
+.video img{width:100%;height:100%;object-fit:cover;display:block}
+.video .play{position:absolute;left:50%;top:50%;width:68px;height:48px;margin:-24px 0 0 -34px;border-radius:12px;background:rgba(220,0,0,.9)}
+.video .play::after{content:"";position:absolute;left:27px;top:14px;border-style:solid;border-width:10px 0 10px 17px;border-color:transparent transparent transparent #fff}
 .apps.manual .src{white-space:normal;overflow:visible}
 .apps.manual li{flex-wrap:wrap}
 .apps.manual .meta{flex:1 1 60%}
@@ -90,6 +99,27 @@ footer a{color:inherit}
   <li><div class="meta"><div class="name">ARDOP Winlink</div><div class="src">DL2MAN · web app. In Chrome, tap ⋮ → <b>Add to Home screen</b> → <b>Install</b></div></div>
     <a class="add" href="https://dl2man.de/ARDOP/client/">Open &amp; install</a></li>
 </ul>
+
+<h2>ATAK with radio plugins</h2>
+<div class="atak">
+  <p style="margin-top:0">ATAK is the free civilian Team Awareness Kit: shared maps, positions and messaging. This setup adds plugins for the <b>BTECH UV-PRO</b> and <b>MeshCore</b>, plus offline maps for your state.</p>
+  <p>It isn't a normal app download. A program on your computer installs everything onto your phone over a USB cable.</p>
+  <a class="video" href="https://www.youtube.com/watch?v=psRS5vUR6as">
+    <img src="https://i.ytimg.com/vi/psRS5vUR6as/hqdefault.jpg" alt="Video: ATAK plugin for MeshCore and UV-PRO" loading="lazy" width="480" height="360">
+    <span class="play" aria-hidden="true"></span>
+  </a>
+  <p class="note" style="margin-top:6px">Watch first: "ATAK plugin for MeshCore and UV-PRO is here!" by AmRRON on YouTube.</p>
+  <h3>What you need</h3>
+  <ul class="needs">
+    <li>A Windows or Linux computer</li>
+    <li>A USB cable for your phone</li>
+    <li><b>USB debugging</b> turned on: Settings → About phone → tap <b>Build number</b> 7 times, then Settings → Developer options → <b>USB debugging</b></li>
+  </ul>
+  <h3>Get the installer</h3>
+  <p>On the releases page, under <b>Assets</b>, download <code>ATAKSetup-…exe</code> for Windows or <code>atak-imagery-…-linux-install.zip</code> for Linux. Don't use the "Source code" zip.</p>
+  <a class="btn" href="https://github.com/atakmaps/atak-imagery/releases">ATAK installer on GitHub</a>
+  <a class="btn ghost" href="https://www.youtube.com/watch?v=psRS5vUR6as">Watch the video</a>
+</div>
 
 <h2>Or add apps one at a time</h2>
 <p class="note" style="margin-top:0">With Obtainium installed, tap <b>Add</b> on any app below to open it straight in Obtainium.</p>
