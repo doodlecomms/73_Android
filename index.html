@@ -39,6 +39,7 @@ code,.path{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85
 .apps .name{font-weight:600}
 .apps .src{color:var(--muted);font-size:.85rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .apps a.add{flex:none;font-size:.85rem;padding:7px 12px;border-radius:8px;border:1px solid var(--line);color:var(--ink);text-decoration:none;white-space:nowrap}
+.apps.manual .src{white-space:normal;overflow:visible}
 .apps .pair{flex:none;display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end}
 .apps a.add:hover{border-color:var(--accent);color:var(--accent)}
 .note{font-size:.9rem;color:var(--muted);margin-top:10px}
@@ -76,7 +77,7 @@ footer a{color:inherit}
 
 <h2>Install these separately</h2>
 <p class="note" style="margin-top:0">These apps can't be added through Obtainium. Install them from the store or site below. Your Play Store or the developer handles their updates.</p>
-<ul class="apps">
+<ul class="apps manual">
   <li><div class="meta"><div class="name">Offline Ham Lookup</div><div class="src">Offline call sign lookup · Google Play</div></div>
     <a class="add" href="https://play.google.com/store/apps/details?id=com.doodlecomms.hamlookup">Get it</a></li>
   <li><div class="meta"><div class="name">Offline Repeater Pro</div><div class="src">Repeater programming · Google Play</div></div>
