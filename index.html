@@ -22,6 +22,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-ap
 header h1{font-size:2rem;line-height:1.15;margin:0 0 6px;letter-spacing:-.01em}
 header h1 span{color:var(--accent)}
 header p{margin:0;color:var(--muted)}
+header a.about{color:var(--accent);font-weight:600;text-decoration:none;white-space:nowrap}
 h2{font-size:1.15rem;margin:36px 0 12px}
 .steps{counter-reset:s;list-style:none;padding:0;margin:0;display:grid;gap:12px}
 .steps>li{counter-increment:s;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 16px 16px 58px;position:relative}
@@ -69,7 +70,7 @@ footer a{color:inherit}
 <div class="wrap">
 <header>
   <h1>73 <span>Android</span></h1>
-  <p>A curated set of ham radio, SDR and off-grid apps for Android. Add them all in a few taps, and they keep themselves up to date.</p>
+  <p>A curated set of ham radio, SDR and off-grid apps for Android. Add them all in a few taps, and they keep themselves up to date. <a class="about" href="about.html">How we pick sources →</a></p>
 </header>
 
 <h2>Set up in three steps</h2>
@@ -143,6 +144,7 @@ footer a{color:inherit}
 <footer>
   73 de the 73 Android project. Apps belong to their authors; this page only points Obtainium at each app's own download source.
   The list is <a href="radio-apps.json">radio-apps.json</a>, so you can review exactly what gets added.
+  <a href="about.html">About 73 Android and how we pick sources</a>.
 </footer>
 </div>
 
