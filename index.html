@@ -9,10 +9,12 @@
 :root{
   --bg:#f6f5f1; --card:#ffffff; --ink:#1c1d1f; --muted:#5d6168; --line:#e2e0d9;
   --accent:#c2410c; --accent-ink:#ffffff; --chip:#f1efe8; --ok:#166534;
+  --warn-bg:#fff7e6; --warn-line:#f5d9a6; --warn-edge:#d97706;
 }
 @media (prefers-color-scheme: dark){
   :root{ --bg:#141518; --card:#1d1f23; --ink:#ececec; --muted:#a2a6ad; --line:#2e3137;
-         --accent:#fb923c; --accent-ink:#1a0d04; --chip:#262930; --ok:#4ade80; }
+         --accent:#fb923c; --accent-ink:#1a0d04; --chip:#262930; --ok:#4ade80;
+         --warn-bg:#2a2112; --warn-line:#5c4518; --warn-edge:#f59e0b; }
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
@@ -39,6 +41,8 @@ code,.path{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85
 .apps .name{font-weight:600}
 .apps .src{color:var(--muted);font-size:.85rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .apps a.add{flex:none;font-size:.85rem;padding:7px 12px;border-radius:8px;border:1px solid var(--line);color:var(--ink);text-decoration:none;white-space:nowrap}
+.warn{background:var(--warn-bg);border:1px solid var(--warn-line);border-left:5px solid var(--warn-edge);border-radius:12px;padding:12px 14px;margin:0 0 12px}
+.warn p{margin:0}
 .atak{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
 .atak p{margin:8px 0}
 .atak h3{font-size:1rem;margin:18px 0 6px}
@@ -68,6 +72,9 @@ footer a{color:inherit}
 </header>
 
 <h2>Set up in three steps</h2>
+<div class="warn" role="note">
+  <p><b>Already have some of these apps?</b> We recommend uninstalling them first, then reinstalling them through Obtainium so they all update the same way. <b>Uninstalling deletes the data inside those apps</b> (settings, logs, saved channels), so back up or write down anything important first.</p>
+</div>
 <ol class="steps">
   <li>
     <h3>Install Obtainium</h3>
