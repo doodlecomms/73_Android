@@ -39,6 +39,7 @@ code,.path{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85
 .apps li:first-child{border-top:0}
 .apps .meta{flex:1;min-width:0}
 .apps .name{font-weight:600}
+.apps .desc{font-size:.9rem;line-height:1.4;margin:2px 0 1px}
 .apps .src{color:var(--muted);font-size:.85rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .apps a.add{flex:none;font-size:.85rem;padding:7px 12px;border-radius:8px;border:1px solid var(--line);color:var(--ink);text-decoration:none;white-space:nowrap}
 .warn{background:var(--warn-bg);border:1px solid var(--warn-line);border-left:5px solid var(--warn-edge);border-radius:12px;padding:12px 14px;margin:0 0 12px}
@@ -97,13 +98,13 @@ footer a{color:inherit}
 <h2>Install these separately</h2>
 <p class="note" style="margin-top:0">These apps can't be added through Obtainium. Install them from the store or site below. Your Play Store or the developer handles their updates.</p>
 <ul class="apps manual">
-  <li><div class="meta"><div class="name">Offline Ham Lookup</div><div class="src">Offline call sign lookup · Google Play</div></div>
+  <li><div class="meta"><div class="name">Offline Ham Lookup</div><div class="desc">Look up call signs without an internet connection</div><div class="src">Google Play</div></div>
     <a class="add" href="https://play.google.com/store/apps/details?id=com.doodlecomms.hamlookup">Get it</a></li>
-  <li><div class="meta"><div class="name">Offline Repeater Pro</div><div class="src">Repeater programming · Google Play</div></div>
+  <li><div class="meta"><div class="name">Offline Repeater Pro</div><div class="desc">Finds repeaters and programs them into your radio, offline</div><div class="src">Google Play</div></div>
     <a class="add" href="https://play.google.com/store/apps/details?id=com.robertrusso.repeater_programmer">Get it</a></li>
-  <li><div class="meta"><div class="name">Ham2K PoLo: Portable Logger</div><div class="src">Beta · Google Play</div></div>
+  <li><div class="meta"><div class="name">Ham2K PoLo: Portable Logger</div><div class="desc">Contact logger for portable operating like POTA and SOTA</div><div class="src">Beta · Google Play</div></div>
     <a class="add" href="https://play.google.com/store/apps/details?id=com.ham2k.polo.beta">Get it</a></li>
-  <li><div class="meta"><div class="name">ARDOP Winlink</div><div class="src">DL2MAN · web app. In Chrome, tap ⋮ → <b>Add to Home screen</b> → <b>Install</b></div></div>
+  <li><div class="meta"><div class="name">ARDOP Winlink</div><div class="desc">ARDOP modem and Winlink email client that runs in the browser</div><div class="src">DL2MAN · web app. In Chrome, tap ⋮ → <b>Add to Home screen</b> → <b>Install</b></div></div>
     <a class="add" href="https://dl2man.de/ARDOP/client/">Open &amp; install</a></li>
 </ul>
 
@@ -157,6 +158,46 @@ const PLAY = {
   "com.sumusltd.woad": ["https://play.google.com/store/apps/details?id=com.sumusltd.woad", "Play (paid)"],
   "com.liamcottle.meshcore.android": ["https://play.google.com/store/apps/details?id=com.liamcottle.meshcore.android", "Play"],
 };
+// One-line description shown under each app's name.
+const DESC = {
+  "com.AndFlmsg": "Fldigi-compatible messaging and ICS/NBEMS forms over radio",
+  "com.bv6lc.ft8tw": "FT8 decoding and transmitting",
+  "com.js8call.example": "JS8 keyboard-to-keyboard weak-signal messaging",
+  "org.rhizomatica.mercury": "HF digital data modem (OFDM) for messaging and connections",
+  "com.ve3nea.morse_expert": "Decodes Morse code (CW) through the microphone",
+  "com.ft8.app": "FT8, FT4 and JS8 with plug-and-play support for many radios",
+  "com.RadioMSG": "Text messages and email over radio digital modes",
+  "com.doodlecomms.rattlegramplusplus": "Text and photo messaging over audio, with BTECH UV-PRO support",
+  "xdsopl.robot36": "Receives and decodes SSTV images",
+  "om.sstvencoder": "Sends pictures as SSTV audio",
+  "com.sumusltd.woad": "Winlink email client for Android",
+  "org.aprsdroid.app": "APRS position reporting, tracking and messaging",
+  "org.briarproject.briar.android": "Encrypted messaging over Bluetooth, Wi-Fi or Tor, no servers needed",
+  "com.geeksville.mesh": "Companion app for Meshtastic LoRa mesh radios",
+  "com.liamcottle.meshcore.android": "Official companion app for MeshCore LoRa mesh radios",
+  "me.jajae.adsbradar": "Tracks nearby aircraft (ADS-B) with an RTL-SDR dongle",
+  "org.opendroneid.android_osm": "Shows nearby drones from their Remote ID broadcasts",
+  "marto.rtl_tcp_andro": "Driver that lets SDR apps use an RTL-SDR USB dongle",
+  "org.sdrpp.sdrpp": "Full-featured software-defined radio receiver",
+  "marto.androsdr2": "SDR receiver for RTL-SDR and other USB dongles",
+  "com.benshikj.ht.btech.ham": "Official BTECH app to program and control the UV-PRO",
+  "com.meshcentral.htcommander": "Control for the UV-PRO, GA-5WB, VR-N76 and VR-N7500",
+  "com.zbm2.repeaterbook": "Directory of amateur radio repeaters near you",
+  "com.example.hfpropagation": "HF propagation predictions (MUF/LUF) between two grid squares",
+  "io.github.jonathanmcsweet.hfcast": "HF band propagation forecasts",
+  "com.canireach.app": "RF path planner: will your signal reach?",
+  "com.talixa.antennatool": "Calculates antenna element lengths",
+  "com.us1pm.gridsquarelocator": "Finds your Maidenhead grid square",
+  "com.chartcross.gpstest": "Shows GPS satellites, signal strength and accuracy",
+  "ea4eoz.HamGPS": "GPS position, grid square and time for hams",
+  "com.k1jsc.gps_utc_clock": "GPS-based UTC clock for JS8Call and FT8 time sync",
+  "com.bobek.compass": "Simple, accurate compass",
+  "com.beemdevelopment.aegis": "Two-factor authentication (2FA) code app",
+  "com.digibites.accubattery": "Battery health and charging monitor",
+  "org.fdroid.fdroid": "App store for free and open-source Android apps",
+  "app.fieldwatch": "Passive Wi-Fi and Bluetooth LE scanner for seeing what's around you",
+  "com.paranoiaworks.unicus.android.sse": "Encrypts text, files and passwords",
+};
 // Short notes shown after an app's source line.
 const NOTES = {
   "org.sdrpp.sdrpp": "nightly build (no stable Android release)",
@@ -177,6 +218,7 @@ fetch("radio-apps.json", {cache:"no-cache"}).then(r => r.json()).then(d => {
     <section class="cat"><h3>${esc(t)}</h3><ul class="apps">
     ${list.sort((a,b)=>a.name.localeCompare(b.name)).map(a => `
       <li><div class="meta"><div class="name">${esc(a.name)}</div>
+      ${DESC[a.id] ? `<div class="desc">${esc(DESC[a.id])}</div>` : ""}
       <div class="src">${esc(a.author)} · ${esc(host(a.url))}${NOTES[a.id] ? " · " + esc(NOTES[a.id]) : ""}</div></div>
       ${PLAY[a.id]
         ? `<span class="pair"><a class="add" href="${esc(deepLink(a))}">Add</a><a class="add" href="${esc(PLAY[a.id][0])}">${esc(PLAY[a.id][1])}</a></span>`
