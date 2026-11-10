@@ -117,6 +117,10 @@ const CATS = [
   ["Propagation & planning", ["com.example.hfpropagation","io.github.jonathanmcsweet.hfcast","com.canireach.app","com.talixa.antennatool","com.us1pm.gridsquarelocator"]],
   ["GPS & time", ["com.chartcross.gpstest","ea4eoz.HamGPS","com.k1jsc.gps_utc_clock","com.bobek.compass"]],
 ];
+// Apps that also have a Google Play option, shown as a second button.
+const PLAY = {
+  "com.sumusltd.woad": ["https://play.google.com/store/apps/details?id=com.sumusltd.woad", "Play (paid)"],
+};
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const host = u => { try { return new URL(u).hostname.replace(/^www\./,""); } catch { return u; } };
 const deepLink = a => "obtainium://app/" + encodeURIComponent(JSON.stringify(a));
@@ -134,7 +138,9 @@ fetch("radio-apps.json", {cache:"no-cache"}).then(r => r.json()).then(d => {
     ${list.sort((a,b)=>a.name.localeCompare(b.name)).map(a => `
       <li><div class="meta"><div class="name">${esc(a.name)}</div>
       <div class="src">${esc(a.author)} · ${esc(host(a.url))}</div></div>
-      <a class="add" href="${esc(deepLink(a))}">Add</a></li>`).join("")}
+      ${PLAY[a.id]
+        ? `<span class="pair"><a class="add" href="${esc(deepLink(a))}">Add</a><a class="add" href="${esc(PLAY[a.id][0])}">${esc(PLAY[a.id][1])}</a></span>`
+        : `<a class="add" href="${esc(deepLink(a))}">Add</a>`}</li>`).join("")}
     </ul></section>`).join("");
 }).catch(() => {
   document.getElementById("list").innerHTML = '<p class="note">Could not load the app list. You can still <a href="radio-apps.json">download it directly</a>.</p>';
