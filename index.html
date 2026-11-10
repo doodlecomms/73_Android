@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>73 Android — Radio Apps</title>
+<meta name="description" content="Install a curated set of ham radio, SDR and off-grid apps on Android in a few taps with Obtainium. Updates arrive automatically.">
+<style>
+:root{
+  --bg:#f6f5f1; --card:#ffffff; --ink:#1c1d1f; --muted:#5d6168; --line:#e2e0d9;
+  --accent:#c2410c; --accent-ink:#ffffff; --chip:#f1efe8; --ok:#166534;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#141518; --card:#1d1f23; --ink:#ececec; --muted:#a2a6ad; --line:#2e3137;
+         --accent:#fb923c; --accent-ink:#1a0d04; --chip:#262930; --ok:#4ade80; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:760px;margin:0 auto;padding:28px 16px 64px}
+header h1{font-size:2rem;line-height:1.15;margin:0 0 6px;letter-spacing:-.01em}
+header h1 span{color:var(--accent)}
+header p{margin:0;color:var(--muted)}
+h2{font-size:1.15rem;margin:36px 0 12px}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.steps>li{counter-increment:s;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 16px 16px 58px;position:relative}
+.steps>li::before{content:counter(s);position:absolute;left:16px;top:16px;width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--accent-ink);font-weight:700;display:grid;place-items:center;font-size:.9rem}
+.steps h3{margin:0 0 4px;font-size:1rem}
+.steps p{margin:4px 0;color:var(--muted)}
+.btn{display:inline-block;margin-top:8px;padding:10px 16px;border-radius:10px;background:var(--accent);color:var(--accent-ink);text-decoration:none;font-weight:600;border:0;font-size:.95rem;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+code,.path{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--chip);padding:2px 6px;border-radius:6px;word-break:break-all}
+.path{display:inline}
+.cat{margin-top:22px}
+.cat h3{font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 8px}
+.apps{list-style:none;padding:0;margin:0;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.apps li{display:flex;align-items:center;gap:12px;padding:12px 14px;border-top:1px solid var(--line)}
+.apps li:first-child{border-top:0}
+.apps .meta{flex:1;min-width:0}
+.apps .name{font-weight:600}
+.apps .src{color:var(--muted);font-size:.85rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.apps a.add{flex:none;font-size:.85rem;padding:7px 12px;border-radius:8px;border:1px solid var(--line);color:var(--ink);text-decoration:none;white-space:nowrap}
+.apps a.add:hover{border-color:var(--accent);color:var(--accent)}
+.note{font-size:.9rem;color:var(--muted);margin-top:10px}
+.count{color:var(--ok);font-weight:600}
+footer{margin-top:48px;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line);padding-top:16px}
+footer a{color:inherit}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>73 <span>Android</span></h1>
+  <p>A curated set of ham radio, SDR and off-grid apps for Android. Add them all in a few taps, and they keep themselves up to date.</p>
+</header>
+
+<h2>Set up in three steps</h2>
+<ol class="steps">
+  <li>
+    <h3>Install Obtainium</h3>
+    <p>Obtainium is a free, open-source app that installs and updates apps directly from their official sources (GitHub, F-Droid, APKPure and so on).</p>
+    <a class="btn" href="https://github.com/ImranR98/Obtainium/releases/latest">Get Obtainium</a>
+    <p class="note">Download the <code>app-arm64-v8a-release.apk</code> file (it works on almost every modern phone). Open it and allow "install unknown apps" when Android asks.</p>
+  </li>
+  <li>
+    <h3>Download the radio app list</h3>
+    <p>A single file with <span class="count" id="appCount">all</span> apps and their source settings.</p>
+    <a class="btn" href="radio-apps.json" download="radio-apps.json">Download radio-apps.json</a>
+  </li>
+  <li>
+    <h3>Import it into Obtainium</h3>
+    <p>In Obtainium, open <b>Settings → Import/export → Obtainium import</b> and choose <code>radio-apps.json</code> from your Downloads folder.</p>
+    <p>Then go to <b>Apps</b>, tap <b>Select all</b>, and choose <b>Install / update</b>. Obtainium will check for new versions and tell you when updates are ready.</p>
+  </li>
+</ol>
+
+<h2>Or add apps one at a time</h2>
+<p class="note" style="margin-top:0">With Obtainium installed, tap <b>Add</b> on any app below to open it straight in Obtainium.</p>
+<div id="list"><p class="note">Loading app list…</p></div>
+
+<footer>
+  73 de the 73 Android project. Apps belong to their authors; this page only points Obtainium at each app's own download source.
+  The list is <a href="radio-apps.json">radio-apps.json</a>, so you can review exactly what gets added.
+</footer>
+</div>
+
+<script>
+const CATS = [
+  ["Digital modes & messaging", ["com.AndFlmsg","com.RadioMSG","com.js8call.example","com.ft8.app","com.bv6lc.ft8tw","org.rhizomatica.mercury","com.doodlecomms.rattlegramplusplus","xdsopl.robot36","om.sstvencoder","com.ve3nea.morse_expert"]],
+  ["APRS & mesh", ["org.aprsdroid.app","com.geeksville.mesh","org.briarproject.briar.android"]],
+  ["SDR & receiving", ["marto.androsdr2","marto.rtl_tcp_andro","org.sdrpp.sdrpp","me.jajae.adsbradar","org.opendroneid.android_osm"]],
+  ["Radio programming & repeaters", ["com.benshikj.ht.btech.ham","com.meshcentral.htcommander","com.zbm2.repeaterbook"]],
+  ["Propagation & planning", ["com.example.hfpropagation","io.github.jonathanmcsweet.hfcast","com.canireach.app","com.talixa.antennatool","com.us1pm.gridsquarelocator"]],
+  ["GPS & time", ["com.chartcross.gpstest","ea4eoz.HamGPS","com.k1jsc.gps_utc_clock","com.bobek.compass"]],
+];
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const host = u => { try { return new URL(u).hostname.replace(/^www\./,""); } catch { return u; } };
+const deepLink = a => "obtainium://app/" + encodeURIComponent(JSON.stringify(a));
+
+fetch("radio-apps.json", {cache:"no-cache"}).then(r => r.json()).then(d => {
+  const apps = d.apps || [];
+  document.getElementById("appCount").textContent = apps.length;
+  const byId = Object.fromEntries(apps.map(a => [a.id, a]));
+  const used = new Set();
+  const groups = CATS.map(([t, ids]) => [t, ids.filter(i => byId[i]).map(i => (used.add(i), byId[i]))]);
+  const rest = apps.filter(a => !used.has(a.id));
+  if (rest.length) groups.push(["Utilities & more", rest]);
+  document.getElementById("list").innerHTML = groups.filter(g => g[1].length).map(([t, list]) => `
+    <section class="cat"><h3>${esc(t)}</h3><ul class="apps">
+    ${list.sort((a,b)=>a.name.localeCompare(b.name)).map(a => `
+      <li><div class="meta"><div class="name">${esc(a.name)}</div>
+      <div class="src">${esc(a.author)} · ${esc(host(a.url))}</div></div>
+      <a class="add" href="${esc(deepLink(a))}">Add</a></li>`).join("")}
+    </ul></section>`).join("");
+}).catch(() => {
+  document.getElementById("list").innerHTML = '<p class="note">Could not load the app list. You can still <a href="radio-apps.json">download it directly</a>.</p>';
+});
+</script>
+</body>
+</html>
