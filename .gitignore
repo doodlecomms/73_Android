@@ -1,2 +1,9 @@
 .claude/
 .DS_Store
+
+# Signing keys and their passwords: never commit
+signing-key-backup/
+*.jks
+*.keystore
+# Local drafts
+issue-drafts.md
