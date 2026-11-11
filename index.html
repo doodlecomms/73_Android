@@ -72,6 +72,7 @@ code,.path{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85
 .apps .pair{flex:none;display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end}
 .apps a.add:hover{border-color:var(--accent);color:var(--accent)}
 .note{font-size:.9rem;color:var(--muted);margin-top:10px}
+.cat-note{margin:0 0 10px}
 .steps>li{min-width:0}
 .shots{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 10px;margin:10px -2px 0;-webkit-overflow-scrolling:touch}
 .shots figure{flex:0 0 160px;margin:0;scroll-snap-align:start}
@@ -248,6 +249,10 @@ const DESC = {
 // Short notes shown after an app's source line.
 const NOTES = {
 };
+// Short notes shown under a category heading.
+const CAT_NOTES = {
+  "SDR & receiving": "There are a lot of SDR apps for Android now, and the list would get too long if we added them all. New SDR apps are only added if they do something the ones here don't.",
+};
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const host = u => { try { return new URL(u).hostname.replace(/^www\./,""); } catch { return u; } };
 const deepLink = a => "obtainium://app/" + encodeURIComponent(JSON.stringify(a));
@@ -261,7 +266,7 @@ fetch("radio-apps.json", {cache:"no-cache"}).then(r => r.json()).then(d => {
   const rest = apps.filter(a => !used.has(a.id));
   if (rest.length) groups.push(["Utilities & more", rest]);
   document.getElementById("list").innerHTML = groups.filter(g => g[1].length).map(([t, list]) => `
-    <section class="cat"><h3>${esc(t)}</h3><ul class="apps">
+    <section class="cat"><h3>${esc(t)}</h3>${CAT_NOTES[t] ? `<p class="note cat-note">${esc(CAT_NOTES[t])}</p>` : ""}<ul class="apps">
     ${list.sort((a,b)=>a.name.localeCompare(b.name)).map(a => `
       <li><div class="meta"><div class="name">${esc(a.name)}</div>
       ${DESC[a.id] ? `<div class="desc">${esc(DESC[a.id])}</div>` : ""}
