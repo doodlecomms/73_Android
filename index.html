@@ -194,7 +194,7 @@ footer a{color:inherit}
 const CATS = [
   ["Digital modes & messaging", ["com.AndFlmsg","com.RadioMSG","com.js8call.example","com.ft8.app","com.bv6lc.ft8tw","org.rhizomatica.mercury","com.doodlecomms.rattlegramplusplus","xdsopl.robot36","om.sstvencoder","com.ve3nea.morse_expert","com.sumusltd.woad","app.modem73"]],
   ["APRS & mesh", ["org.aprsdroid.app","com.geeksville.mesh","com.liamcottle.meshcore.android","org.briarproject.briar.android"]],
-  ["SDR & receiving", ["marto.androsdr2","marto.rtl_tcp_andro","org.sdrpp.sdrpp","me.jajae.adsbradar","org.opendroneid.android_osm"]],
+  ["SDR & receiving", ["marto.androsdr2","marto.rtl_tcp_andro","com.mantz_it.rfanalyzer","me.jajae.adsbradar","org.opendroneid.android_osm"]],
   ["Radio programming & repeaters", ["com.benshikj.ht.btech.ham","com.meshcentral.htcommander","com.zbm2.repeaterbook"]],
   ["Propagation & planning", ["com.example.hfpropagation","io.github.jonathanmcsweet.hfcast","com.canireach.app","com.doodlecomms.antennacalculator","com.us1pm.gridsquarelocator"]],
   ["GPS & time", ["com.chartcross.gpstest","ea4eoz.HamGPS","com.k1jsc.gps_utc_clock","com.bobek.compass"]],
@@ -225,7 +225,7 @@ const DESC = {
   "me.jajae.adsbradar": "Tracks nearby aircraft (ADS-B) with an RTL-SDR dongle",
   "org.opendroneid.android_osm": "Shows nearby drones from their Remote ID broadcasts",
   "marto.rtl_tcp_andro": "Driver that lets SDR apps use an RTL-SDR USB dongle",
-  "org.sdrpp.sdrpp": "Full-featured software-defined radio receiver",
+  "com.mantz_it.rfanalyzer": "Open-source spectrum analyzer and receiver for RTL-SDR and HackRF",
   "marto.androsdr2": "SDR receiver for RTL-SDR and other USB dongles",
   "com.benshikj.ht.btech.ham": "Official BTECH app to program and control the UV-PRO",
   "com.meshcentral.htcommander": "Control for the UV-PRO, GA-5WB, VR-N76 and VR-N7500",
@@ -247,7 +247,6 @@ const DESC = {
 };
 // Short notes shown after an app's source line.
 const NOTES = {
-  "org.sdrpp.sdrpp": "nightly build (no stable Android release)",
 };
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const host = u => { try { return new URL(u).hostname.replace(/^www\./,""); } catch { return u; } };
