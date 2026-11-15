@@ -73,6 +73,9 @@ code,.path{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85
 .apps a.add:hover{border-color:var(--accent);color:var(--accent)}
 .note{font-size:.9rem;color:var(--muted);margin-top:10px}
 .cat-note{margin:0 0 10px}
+.guide{font-size:.9rem;margin-top:12px;padding:12px 14px;background:var(--card);border:1px solid var(--line);border-radius:14px}
+.guide ol{margin:8px 0 0;padding-left:1.3em}.guide ul{margin:4px 0;padding-left:1.2em}.guide li{margin:3px 0}
+.guide p{margin:8px 0 0;color:var(--muted)}
 .steps>li{min-width:0}
 .shots{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 10px;margin:10px -2px 0;-webkit-overflow-scrolling:touch}
 .shots figure{flex:0 0 160px;margin:0;scroll-snap-align:start}
@@ -129,7 +132,7 @@ footer a{color:inherit}
   </li>
 </ol>
   <div class="warn" role="note" id="popups" style="margin-top:14px">
-    <p><b>Expect a lot of pop-ups. They're normal.</b> Installing 37 apps means Android and Obtainium will ask you to confirm a lot. Here's what you'll see and what to tap:</p>
+    <p><b>Expect a lot of pop-ups. They're normal.</b> Installing 38 apps means Android and Obtainium will ask you to confirm a lot. Here's what you'll see and what to tap:</p>
     <ul class="popups">
       <li><b>"Allow installs from this source?"</b> (first time only)<span>Android asks before Obtainium can install apps. Tap <b>Settings</b>, turn on <b>Allow from this source</b>, then go back.</span></li>
       <li><b>"The app source is … but the release package comes from …"</b><span>The download is served from a different site than the app's page, for example APKPure's download server <code>data.winudf.com</code>, qFT8's GitHub, or WoAD's Google Drive. Tap <b>Continue</b>. Tick <b>Don't show this again</b> the first time to skip the rest.</span></li>
@@ -199,6 +202,7 @@ const CATS = [
   ["Radio programming & repeaters", ["com.benshikj.ht.btech.ham","com.meshcentral.htcommander","com.zbm2.repeaterbook"]],
   ["Propagation & planning", ["com.example.hfpropagation","io.github.jonathanmcsweet.hfcast","com.canireach.app","com.doodlecomms.antennacalculator","com.us1pm.gridsquarelocator"]],
   ["GPS & time", ["com.chartcross.gpstest","ea4eoz.HamGPS","com.k1jsc.gps_utc_clock","com.bobek.compass"]],
+  ["Offline reference", ["org.kiwix.kiwixmobile.standalone"]],
 ];
 // Apps that also have a Google Play option, shown as a second button.
 const PLAY = {
@@ -240,6 +244,7 @@ const DESC = {
   "ea4eoz.HamGPS": "GPS position, grid square and time for hams",
   "com.k1jsc.gps_utc_clock": "GPS-based UTC clock for JS8Call and FT8 time sync",
   "com.bobek.compass": "Simple, accurate compass",
+  "org.kiwix.kiwixmobile.standalone": "Offline reader for Wikipedia and other reference libraries",
   "com.beemdevelopment.aegis": "Two-factor authentication (2FA) code app",
   "com.digibites.accubattery": "Battery health and charging monitor",
   "app.fieldwatch": "Passive Wi-Fi and Bluetooth LE scanner for seeing what's around you",
@@ -251,6 +256,21 @@ const NOTES = {
 // Short notes shown under a category heading.
 const CAT_NOTES = {
   "SDR & receiving": "There are a lot of SDR apps for Android now, and the list would get too long if we added them all. New SDR apps are only added if they do something the ones here don't.",
+};
+// Longer how-to shown under a category's app list (our own trusted HTML).
+const CAT_GUIDES = {
+  "Offline reference": `<div class="guide"><b>Getting offline Wikipedia</b>
+    <ol>
+      <li>Open Kiwix and go to the <b>Download</b> tab.</li>
+      <li>Search <b>Wikipedia</b> and pick a size:
+        <ul>
+          <li><b>Every article, text only:</b> about 49 GB</li>
+          <li><b>Top 1 million articles, text only:</b> about 16 GB</li>
+          <li><b>Top 1 million articles, first paragraph only:</b> about 2.8 GB</li>
+        </ul></li>
+      <li>Download it on Wi-Fi with the phone on its charger. The big one can take hours.</li>
+    </ol>
+    <p>Check your free space first (Settings → Storage), and leave some room spare. The Wikipedia file doesn't update itself: a new version comes out every few months, and updating means downloading the whole file again.</p></div>`,
 };
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const host = u => { try { return new URL(u).hostname.replace(/^www\./,""); } catch { return u; } };
@@ -273,7 +293,7 @@ fetch("radio-apps.json", {cache:"no-cache"}).then(r => r.json()).then(d => {
       ${PLAY[a.id]
         ? `<span class="pair"><a class="add" href="${esc(deepLink(a))}">Add</a><a class="add" href="${esc(PLAY[a.id][0])}">${esc(PLAY[a.id][1])}</a></span>`
         : `<a class="add" href="${esc(deepLink(a))}">Add</a>`}</li>`).join("")}
-    </ul></section>`).join("");
+    </ul>${CAT_GUIDES[t] || ""}</section>`).join("");
 }).catch(() => {
   document.getElementById("list").innerHTML = '<p class="note">Could not load the app list. You can still <a href="radio-apps.json">download it directly</a>.</p>';
 });
