@@ -28,7 +28,7 @@
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
 .wrap{max-width:760px;margin:0 auto;padding:28px 16px 64px}
-nav{margin:0 0 18px;font-size:.9rem}
+nav{margin:0 0 18px;font-size:.9rem;display:flex;justify-content:space-between;align-items:center;gap:12px}
 nav a{color:var(--muted);text-decoration:none}
 nav a:hover{color:var(--accent)}
 header h1{font-size:2rem;line-height:1.15;margin:0 0 6px;letter-spacing:-.01em}
@@ -50,6 +50,8 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;bac
 a{color:var(--accent)}
 footer{margin-top:48px;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line);padding-top:16px}
 footer a{color:inherit}
+.donate{font-size:.8rem;font-weight:600;color:var(--muted);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:4px 11px;white-space:nowrap}
+.donate:hover{color:var(--accent);border-color:var(--accent)}
 footer .support{margin:0 0 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 footer .support .btn{margin-top:0;color:var(--ink);background:transparent;border:1px solid var(--line);font-size:.9rem;padding:8px 14px}
 footer .support .btn:hover{border-color:var(--accent);color:var(--accent)}
@@ -57,7 +59,7 @@ footer .support .btn:hover{border-color:var(--accent);color:var(--accent)}
 </head>
 <body>
 <div class="wrap">
-<nav><a href="./">← Back to setup</a></nav>
+<nav><a href="./">← Back to setup</a><a class="donate" href="https://www.paypal.com/donate/?business=KWJVRWHEDKU7J&amp;no_recurring=0&amp;item_name=Supports+the+73+Android+project&amp;currency_code=USD" target="_blank" rel="noopener">♥ Donate</a></nav>
 <header>
   <h1>About 73 <span>Android</span></h1>
   <p>A free, hand-picked list of ham radio, SDR and off-grid apps for Android. Add them all at once with Obtainium, and they keep themselves up to date.</p>
