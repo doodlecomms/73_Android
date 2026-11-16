@@ -335,6 +335,7 @@ fetch("radio-apps.json", {cache:"no-cache"}).then(r => r.json()).then(d => {
     setTimeout(() => URL.revokeObjectURL(url), 10000);
   });
   sync();
+  if (location.hash === "#pick") document.getElementById("pick").scrollIntoView();
 }).catch(() => {
   document.getElementById("list").innerHTML = '<p class="note">Could not load the app list. You can still <a href="radio-apps.json">download it directly</a>.</p>';
 });
