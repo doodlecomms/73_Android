@@ -7,3 +7,5 @@ signing-key-backup/
 *.keystore
 # Local drafts
 issue-drafts.md
+# Link checker state (kept in the Actions cache)
+.linkcheck-state.json

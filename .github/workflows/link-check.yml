@@ -1,0 +1,38 @@
+name: Daily link check
+on:
+  schedule:
+    - cron: "41 7 * * *"   # daily, after the WoAD link update
+  workflow_dispatch:
+    inputs:
+      simulate_broken_link:
+        description: "Test only: a URL to treat as a site link (use a broken one to see the alert)"
+        required: false
+        default: ""
+permissions:
+  contents: read
+  issues: write
+concurrency:
+  group: link-check
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore last run's store-page results
+        uses: actions/cache/restore@v4
+        with:
+          path: .linkcheck-state.json
+          key: linkcheck-${{ github.run_id }}
+          restore-keys: linkcheck-
+      - name: Check links and APK sources
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SIMULATE_BROKEN_LINK: ${{ inputs.simulate_broken_link }}
+        run: python3 scripts/check_links.py --issue
+      - name: Save store-page results for tomorrow
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: .linkcheck-state.json
+          key: linkcheck-${{ github.run_id }}
