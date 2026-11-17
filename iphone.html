@@ -52,6 +52,9 @@ h2{font-size:1.15rem;margin:36px 0 12px}
 .apps a.add{flex:none;font-size:.82rem;line-height:1.25;text-align:center;padding:7px 10px;border-radius:8px;border:1px solid var(--line);color:var(--ink);text-decoration:none;white-space:nowrap}
 .apps a.add:hover{border-color:var(--accent);color:var(--accent)}
 .note{font-size:.9rem;color:var(--muted);margin-top:10px}
+.howto{font-size:.9rem;margin-top:10px;padding:12px 14px;background:var(--card);border:1px solid var(--line);border-radius:14px}
+.howto ol{margin:6px 0 0;padding-left:1.3em}.howto li{margin:3px 0}
+.howto p{margin:8px 0 0;color:var(--muted)}
 .android-only{font-size:.9rem;color:var(--muted);background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
 .android-only p{margin:0 0 6px}
 footer{margin-top:48px;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line);padding-top:16px}
@@ -143,8 +146,8 @@ const IOS = [
     ["Offline Ham Lookup", "Look up call signs without an internet connection", "https://apps.apple.com/us/app/offline-ham-lookup/id6798756580", "doodlecomms", "Free", "Offline Ham Lookup"],
   ]],
   ["Offline reference & privacy", [
-    ["Kiwix", "Offline reader for Wikipedia and other reference libraries", "https://apps.apple.com/us/app/kiwix/id997079563", "Kiwix", "Free", "Kiwix"],
     ["Paranoia Text Encryption Lite", "Encrypts text and notes, from Paranoia Works, the makers of S.S.E. on Android", "https://apps.apple.com/us/app/paranoia-text-encryption-lite/id1092955070", "Paranoia Works", "Free", "S.S.E."],
+    ["Kiwix", "Offline reader for Wikipedia and other reference libraries", "https://apps.apple.com/us/app/kiwix/id997079563", "Kiwix", "Free", "Kiwix"],
   ]],
 ];
 // Android apps that aren't on iPhone.
@@ -153,13 +156,24 @@ const MISSING = ["AndFlmsg", "RadioMSG", "FT8TW", "MODEM73", "Robot36", "SSTV En
   "Antenna Calculator", "Grid Square Locator", "GPS Test", "HamGPS", "GPS UTC Clock", "Aegis",
   "AccuBattery", "Fieldwatch"];
 
+// Short how-to shown under the category that holds this app.
+const HOWTO = {
+  "Kiwix": `<b>Getting offline Wikipedia</b>
+    <ol>
+      <li>Install Kiwix and open it while you're on Wi-Fi.</li>
+      <li>Open Kiwix's library, choose <b>Wikipedia</b>, and pick a version in your language.</li>
+      <li>Tap <b>Download</b>. Keep the phone on Wi-Fi and charging until it finishes.</li>
+      <li>That's it. Wikipedia now opens in Kiwix with no internet or cell signal.</li>
+    </ol>
+    <p>Check your free space first. The full English Wikipedia without pictures is about 53 GB. Smaller versions, like the top articles only, take much less room.</p>`,
+};
 const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 document.getElementById("list").innerHTML = IOS.map(([cat, apps]) => `
   <div class="cat"><h3>${esc(cat)}</h3><ul class="apps">${apps.map(([n, d, path, dev, price, android]) => `
     <li><div class="meta"><div class="name">${esc(n)}</div><div class="desc">${esc(d)}</div>
       <div class="src">${esc(dev)} · ${esc(price)}${android ? ` · Android: ${esc(android)}` : ""}</div></div>
       <a class="add" href="${path}" target="_blank" rel="noopener">App Store</a></li>`).join("")}
-  </ul></div>`).join("");
+  </ul>${apps.filter(a => HOWTO[a[0]]).map(a => `<div class="howto">${HOWTO[a[0]]}</div>`).join("")}</div>`).join("");
 document.getElementById("missing").textContent = MISSING.join(", ") + ".";
 </script>
 </body>
