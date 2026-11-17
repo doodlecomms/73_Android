@@ -51,6 +51,7 @@ h2{font-size:1.15rem;margin:36px 0 12px}
 .apps .src{color:var(--muted);font-size:.85rem;overflow-wrap:anywhere}
 .apps a.add{flex:none;font-size:.82rem;line-height:1.25;text-align:center;padding:7px 10px;border-radius:8px;border:1px solid var(--line);color:var(--ink);text-decoration:none;white-space:nowrap}
 .apps a.add:hover{border-color:var(--accent);color:var(--accent)}
+.soon{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:1px 7px;margin-left:4px;vertical-align:2px;white-space:nowrap}
 .note{font-size:.9rem;color:var(--muted);margin-top:10px}
 .howto{font-size:.9rem;margin-top:10px;padding:12px 14px;background:var(--card);border:1px solid var(--line);border-radius:14px}
 .howto ol{margin:6px 0 0;padding-left:1.3em}.howto li{margin:3px 0}
@@ -116,10 +117,11 @@ footer .support .btn:hover{border-color:var(--accent);color:var(--accent)}
 </div>
 
 <script>
-// [category, [[name, description, App Store link, developer, price note, matches on Android], ...]]
+// [category, [[name, description, App Store link, developer, price note, matches on Android, button label?, coming soon?], ...]]
 const IOS = [
   ["Digital modes & messaging", [
     ["JS8 Firefly", "JS8 keyboard-to-keyboard chat, heartbeats and store-and-forward messages with any JS8Call station", "https://apps.apple.com/us/app/js8-firefly/id6826502289", "NR5P", "Paid", "JS8Call"],
+    ["SkipJS8", "Keep an eye on this one: free JS8 for iPhone that plugs into your radio over USB-C. It's in beta and not on the App Store yet", "https://salmancuso.com/tools/js8mobile/", "W6SAL", "Free, coming soon", "JS8Call", "Learn more", true],
     ["qFT8", "FT8, FT4, JS8, WSPR, CW, RTTY and SSTV, from the same developer as qFT8 on Android", "https://apps.apple.com/us/app/qft8-amateur-radio-swl-sdr/id6818041674", "Luis Quesada Torres", "Free", "qFT8"],
     ["RadioMail", "Winlink email over amateur radio, or over Wi-Fi and cellular when you have them", "https://apps.apple.com/us/app/radiomail/id6779002258", "Island Magic", "Free trial", "WoAD"],
     ["Mercury HF Modem", "HF digital data modem for email, files and messages, from the makers of Mercury on Android", "https://apps.apple.com/us/app/mercury-hf-modem/id6822504870", "Rhizomatica", "Free", "Mercury"],
@@ -169,10 +171,10 @@ const HOWTO = {
 };
 const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 document.getElementById("list").innerHTML = IOS.map(([cat, apps]) => `
-  <div class="cat"><h3>${esc(cat)}</h3><ul class="apps">${apps.map(([n, d, path, dev, price, android]) => `
-    <li><div class="meta"><div class="name">${esc(n)}</div><div class="desc">${esc(d)}</div>
+  <div class="cat"><h3>${esc(cat)}</h3><ul class="apps">${apps.map(([n, d, path, dev, price, android, btn, soon]) => `
+    <li><div class="meta"><div class="name">${esc(n)}${soon ? ` <span class="soon">Coming soon</span>` : ""}</div><div class="desc">${esc(d)}</div>
       <div class="src">${esc(dev)} · ${esc(price)}${android ? ` · Android: ${esc(android)}` : ""}</div></div>
-      <a class="add" href="${path}" target="_blank" rel="noopener">App Store</a></li>`).join("")}
+      <a class="add" href="${path}" target="_blank" rel="noopener">${esc(btn || "App Store")}</a></li>`).join("")}
   </ul>${apps.filter(a => HOWTO[a[0]]).map(a => `<div class="howto">${HOWTO[a[0]]}</div>`).join("")}</div>`).join("");
 document.getElementById("missing").textContent = MISSING.join(", ") + ".";
 </script>
