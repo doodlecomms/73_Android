@@ -99,7 +99,10 @@ code,.path{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85
 .bar .clear{background:none;border:0;color:var(--muted);font:inherit;font-size:.9rem;text-decoration:underline;cursor:pointer;padding:6px}
 footer{margin-top:48px;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line);padding-top:16px}
 footer a{color:inherit}
-.topbar{display:flex;justify-content:flex-end;margin:-12px 0 6px}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:-12px 0 14px}
+.tabs{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--card)}
+.tabs a{font-size:.85rem;font-weight:600;text-decoration:none;color:var(--muted);padding:4px 12px;border-radius:999px;white-space:nowrap}
+.tabs a[aria-current]{background:var(--accent);color:var(--accent-ink)}
 .donate{font-size:.8rem;font-weight:600;color:var(--muted);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:4px 11px;white-space:nowrap}
 .donate:hover{color:var(--accent);border-color:var(--accent)}
 footer .support{margin:0 0 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
@@ -109,7 +112,7 @@ footer .support .btn:hover{border-color:var(--accent);color:var(--accent)}
 </head>
 <body>
 <div class="wrap">
-<div class="topbar"><a class="donate" href="https://www.paypal.com/donate/?business=KWJVRWHEDKU7J&amp;no_recurring=0&amp;item_name=Supports+the+73+Android+project&amp;currency_code=USD" target="_blank" rel="noopener">♥ Support 73 Android</a></div>
+<div class="topbar"><nav class="tabs" aria-label="Phone type"><a href="./" aria-current="page">Android</a><a href="iphone.html">iPhone</a></nav><a class="donate" href="https://www.paypal.com/donate/?business=KWJVRWHEDKU7J&amp;no_recurring=0&amp;item_name=Supports+the+73+Android+project&amp;currency_code=USD" target="_blank" rel="noopener">♥ Support 73 Android</a></div>
 <header>
   <h1>73 <span>Android</span></h1>
   <p>A curated set of ham radio, SDR and off-grid apps for Android. Add them all in a few taps, and they keep themselves up to date. <a class="about" href="about.html">How we pick sources →</a></p>
