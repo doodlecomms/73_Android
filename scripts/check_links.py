@@ -263,8 +263,15 @@ def gh(method, path, data=None):
         return json.loads(r.read() or b"null")
 
 
+def mention(text):
+    owner = os.environ.get("GITHUB_REPOSITORY_OWNER")
+    return f"@{owner} {text}" if owner else text
+
+
 def report_body():
-    lines = ["The daily link check found problems. Obtainium installs or the site may be affected.", "",
+    owner = os.environ.get("GITHUB_REPOSITORY_OWNER")
+    hi = f"@{owner} " if owner else ""  # a mention makes GitHub notify (and email) the owner
+    lines = [f"{hi}The daily link check found problems. Obtainium installs or the site may be affected.", "",
              "| Where | Problem |", "|---|---|"]
     lines += [f"| {w} | {p.replace('|', '/')} |" for w, p in sorted(problems)]
     run = os.environ.get("GITHUB_RUN_ID")
@@ -286,7 +293,7 @@ def sync_issue():
         elif issue["body"].split("[See the run log]")[0] != body.split("[See the run log]")[0]:
             gh("PATCH", f"/repos/{repo}/issues/{issue['number']}", {"body": body})
             gh("POST", f"/repos/{repo}/issues/{issue['number']}/comments",
-               {"body": "The list of problems changed. See the updated description above."})
+               {"body": mention("The list of problems changed. See the updated description above.")})
             print("Updated issue")
         else:
             gh("PATCH", f"/repos/{repo}/issues/{issue['number']}", {"body": body})
