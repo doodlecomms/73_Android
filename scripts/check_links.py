@@ -23,7 +23,7 @@ import urllib.parse
 import urllib.request
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PAGES = ["index.html", "about.html", "iphone.html", "README.md"]
+PAGES = ["index.html", "about.html", "iphone.html", "links.html", "README.md"]
 SITE = "https://doodlecomms.github.io/73_Android/"
 UA = "Mozilla/5.0 (Linux; Android 14) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36"
 STORE_HOSTS = ("apkpure.com", "apkpure.net", "uptodown.com")
