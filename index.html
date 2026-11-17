@@ -176,6 +176,8 @@ footer .support .btn:hover{border-color:var(--accent);color:var(--accent)}
     <a class="add" href="https://play.google.com/store/apps/details?id=com.robertrusso.repeater_programmer">Get it</a></li>
   <li><div class="meta"><div class="name">Ham2K PoLo: Portable Logger</div><div class="desc">Contact logger for portable operating like POTA and SOTA</div><div class="src">Beta · Google Play</div></div>
     <a class="add" href="https://play.google.com/store/apps/details?id=com.ham2k.polo.beta">Get it</a></li>
+  <li><div class="meta"><div class="name">SDRTouch</div><div class="desc">SDR receiver for RTL-SDR and other USB dongles. Also add <b>Rtl-sdr driver</b> from the list below, which it needs</div><div class="src">Martin Marinov · Google Play</div></div>
+    <a class="add" href="https://play.google.com/store/apps/details?id=marto.androsdr2">Get it</a></li>
   <li><div class="meta"><div class="name">ARDOP Winlink</div><div class="desc">ARDOP modem and Winlink email client that runs in the browser</div><div class="src">DL2MAN · web app. In Chrome, tap ⋮ → <b>Add to Home screen</b> → <b>Install</b></div></div>
     <a class="add" href="https://dl2man.de/ARDOP/client/">Open &amp; install</a></li>
 </ul>
@@ -230,9 +232,9 @@ footer .support .btn:hover{border-color:var(--accent);color:var(--accent)}
 const CATS = [
   ["Digital modes & messaging", ["com.AndFlmsg","com.RadioMSG","com.js8call.example","com.ft8.app","com.bv6lc.ft8tw","org.rhizomatica.mercury","com.doodlecomms.rattlegramplusplus","xdsopl.robot36","om.sstvencoder","com.ve3nea.morse_expert","com.sumusltd.woad","app.modem73"]],
   ["APRS & mesh", ["org.aprsdroid.app","com.geeksville.mesh","com.liamcottle.meshcore.android","org.briarproject.briar.android","com.bitchat.droid"]],
-  ["SDR & receiving", ["marto.androsdr2","marto.rtl_tcp_andro","com.mantz_it.rfanalyzer","me.jajae.adsbradar","org.opendroneid.android_osm"]],
+  ["SDR & receiving", ["marto.rtl_tcp_andro","com.mantz_it.rfanalyzer","me.jajae.adsbradar","org.opendroneid.android_osm"]],
   ["Radio programming & repeaters", ["com.benshikj.ht.btech.ham","com.meshcentral.htcommander","com.zbm2.repeaterbook"]],
-  ["Propagation & planning", ["com.example.hfpropagation","io.github.jonathanmcsweet.hfcast","com.canireach.app","com.doodlecomms.antennacalculator","com.us1pm.gridsquarelocator"]],
+  ["Propagation & planning", ["io.github.jonathanmcsweet.hfcast","com.canireach.app","com.doodlecomms.antennacalculator","com.us1pm.gridsquarelocator"]],
   ["GPS & time", ["com.chartcross.gpstest","ea4eoz.HamGPS","com.k1jsc.gps_utc_clock","com.bobek.compass"]],
   ["Offline reference", ["org.kiwix.kiwixmobile.standalone"]],
 ];
@@ -264,11 +266,9 @@ const DESC = {
   "org.opendroneid.android_osm": "Shows nearby drones from their Remote ID broadcasts",
   "marto.rtl_tcp_andro": "Driver that lets SDR apps use an RTL-SDR USB dongle",
   "com.mantz_it.rfanalyzer": "Open-source spectrum analyzer and receiver for RTL-SDR and HackRF",
-  "marto.androsdr2": "SDR receiver for RTL-SDR and other USB dongles",
   "com.benshikj.ht.btech.ham": "Official BTECH app to program and control the UV-PRO",
   "com.meshcentral.htcommander": "Control for the UV-PRO, GA-5WB, VR-N76 and VR-N7500",
   "com.zbm2.repeaterbook": "Directory of amateur radio repeaters near you",
-  "com.example.hfpropagation": "HF propagation predictions (MUF/LUF) between two grid squares",
   "io.github.jonathanmcsweet.hfcast": "HF band propagation forecasts",
   "com.canireach.app": "RF path planner: will your signal reach?",
   "com.doodlecomms.antennacalculator": "Dipole, vertical, Yagi, loop and quad dimensions, fully offline (N7SIX's calculator)",
@@ -285,7 +285,6 @@ const DESC = {
 };
 // Ticking an app also ticks the apps it needs to work.
 const NEEDS = {
-  "marto.androsdr2": ["marto.rtl_tcp_andro"],
 };
 // Short notes shown after an app's source line.
 const NOTES = {
@@ -311,7 +310,6 @@ const CAT_GUIDES = {
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 // Where the source link goes, when the list's URL is a raw download rather than a readable page.
 const LINK = {
-  "marto.androsdr2": "https://sdrtouch.en.uptodown.com/android",
   "com.sumusltd.woad": "https://woad.sumusltd.com/download/",
 };
 const SITE = {"github.com": "GitHub", "f-droid.org": "F-Droid", "apkpure.com": "APKPure", "apkpure.net": "APKPure"};
